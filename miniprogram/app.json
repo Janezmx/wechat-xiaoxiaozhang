@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/Mission/index",
+    "pages/MissionAdd/index",
+    "pages/MissionDetail/index",
+    "pages/MainPage/index",
+    "pages/Account/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff99aa",
+    "navigationBarTitleText": "小小张的日常生活",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#1a1a1a",
+    "selectedColor": "#ff99aa",
+    "list": [{
+      "pagePath": "pages/Mission/index",
+      "selectedIconPath": "images/TabBar/list.jpg",
+      "iconPath": "images/TabBar/listGrey.jpg",
+      "text": "列表"
+    },{
+      "pagePath": "pages/MainPage/index",
+      "selectedIconPath": "images/TabBar/home.jpg",
+      "iconPath": "images/TabBar/homeGrey.jpg",
+      "text": "我的"
+    }]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "cloud": true,
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "useExtendedLib": {
+    "weui": true
+  }
+}

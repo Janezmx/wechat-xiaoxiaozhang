@@ -1,0 +1,94 @@
+<wxs module="util" src="../util.wxs" />
+
+<view class="container white" wx:if="{{allMissions.length === 0}}">
+  <!-- <image class="background" src="Images/None.png" mode="aspectFit" /> -->
+  <view class="title">暂无任务</view>
+  <view class="subtitle">好像什么任务也没有...</view>
+</view>
+
+<swiper wx:if="{{coverList.length > 0}}" indicator-dots="true" autoplay="true" interval="2000" duration="500"
+style="height: 200px; width: 100%; background: white; ">
+      <swiper-item wx:for="{{coverList}}" wx:key="id">
+      <image src="{{item.imageUrl}}" mode='widthFix' class="swiper-image" data-id="{{item._id}}"  bindtap="toDetailPage"/>
+      </swiper-item>
+</swiper>
+<view>
+        <view>
+            <view class="weui-navbar">
+                <block wx:for="{{presets}}" wx:key="index">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item.name}}</view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+
+<view class="container" wx:if="{{allMissions.length > 0}}">
+  <view class="form-group"><view class="search-bar">
+    <icon class="search-icon" type="search" size="24"></icon>
+    <input class="search-input" placeholder="搜索任务" bindinput="onSearch" value="{{search}}" />
+  </view></view>
+
+  <!-- <view class="form-group_label">未下架<mp-badge content="{{allMissions.length}}" style="margin-left: 5px;" /></view> -->
+  <view class="form-group" wx:if="{{missionList.length > 0}}"
+  style="z-index: 0; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);">
+    <!-- <view class="form-cell" wx:for="{{missionList}}" wx:key="index">
+      <mp-slideview class="mobile-slideview" disable="{{!isAuthor}}" buttons="{{slideButtons}}" data-index='{{index}}' data-id="{{item._id}}" icon="{{true}}" data-cover="{{!!item.isCover}}" data-top="{{!!item.isTop}}" bindbuttontap="slideButtonTap">
+        <view class="slide-content" data-index="{{index}}" data-id="{{item._id}}"  bindtap="toDetailPage">
+          <view class="weui-panel__bd">
+                    <view url="" class="weui-media-box weui-media-box_appmsg" style="padding: 5px;" hover-class="weui-cell_active">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" style="margin-right: 10px;">
+                            <image class="weui-media-box__thumb" src="{{values[item.valueIndex].image}}" />
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{util.filterStr(item.title, 10)}}</view>
+                            <view class="weui-media-box__desc">🌐 渠道:{{tags[item.tagIndex].name}}</view>
+                            <view class="weui-media-box__desc">🎁 奖励: {{values[item.valueIndex].name}}</view>
+                            <view class="weui-media-box__desc">📅
+                            <view style="font-size: 12px;display: inline-block;"> 时间:{{item.dateBegin}} — {{item.dateEnd}} </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <image wx:if="{{item.isCover && isAuthor}}" class="star" src="Images/Star.png" />
+                <image wx:if="{{item.isNew}}" class="star" src="Images/new_red2.png" style="width: 36px;height: 36px;"/>
+                <image wx:if="{{!item.isNew && item.isTop}}" class="star" src="Images/star2.png" style="width: 32px;height: 32px;"/>
+        </view>
+      </mp-slideview>
+    </view> -->
+    <view
+    	  wx:for="{{missionList}}" wx:key="index" data-index="{{index}}"
+    	  class="leftSideBox {{item.isTouchMove ? 'leftLaterBox' : ''}}"
+    	  bindtouchstart="touchstart"
+    	  bindtouchmove="touchEvent"
+    >
+              <view class="txtBox" data-index="{{index}}" data-id="{{item._id}}"  bindtap="toDetailPage">
+                        <view class="weui-panel__bd">
+                                  <view url="" class="weui-media-box weui-media-box_appmsg" style="padding: 5px;" hover-class="weui-cell_active">
+                                      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" style="margin-right: 10px;">
+                                          <image class="weui-media-box__thumb" src="{{values[item.valueIndex].image}}" />
+                                      </view>
+                                      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                          <view class="weui-media-box__title">{{util.filterStr(item.title, 10)}}</view>
+                                          <view class="weui-media-box__desc">🌐 渠道:{{tags[item.tagIndex].name}}</view>
+                                          <view class="weui-media-box__desc">🎁 奖励: {{values[item.valueIndex].name}}</view>
+                                          <view class="weui-media-box__desc">📅
+                                          <view style="font-size: 12px;display: inline-block;"> 时间:{{item.dateBegin}} — {{item.dateEnd}} </view>
+                                          </view>
+                                      </view>
+                                  </view>
+                              </view>
+                              <image wx:if="{{item.isCover && isAuthor}}" class="star" src="Images/Star.png" />
+                              <image wx:if="{{item.isNew}}" class="star" src="Images/new_red2.png" style="width: 36px;height: 36px;"/>
+                              <image wx:if="{{!item.isNew && item.isTop}}" class="star" src="Images/star2.png" style="width: 32px;height: 32px;"/>
+                      </view>
+              <!-- 操作按钮 默认不显示 -->
+                      <view style="background-color: #6495ED;" class="auditBox" bindtap="editItem" data-index="{{index}}" data-id="{{item._id}}">编辑</view>
+                      <view class="auditBox" bindtap="deleteItem" data-index="{{index}}" data-id="{{item._id}}">删除</view>
+                      <view style="background-color: green;" class="auditBox" bindtap="setTop" data-index="{{index}}" data-id="{{item._id}}" data-top="{{!!item.isTop}}">置顶</view>
+    </view>
+  </view>
+
+</view>
+

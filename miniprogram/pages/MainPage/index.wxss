@@ -1,0 +1,93 @@
+.form-cell {
+  padding: 0;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+
+.title {
+  font-size: 12px;
+}
+
+.swiper-image{
+  display: block;
+  height: 100%; 
+  width: 100%;
+  position: relative;
+  background-color: darkgray;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.show-btn { 
+  margin-top: 100rpx; 
+  color: #22cc22;
+ } 
+.jumpSetModel { 
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 9999;
+ }
+ .jumpSetBox {
+  border-radius: 36rpx;
+  width: 80%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+ }
+ .m-title{
+  font-size: 36rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #030303;
+}
+.m-content{
+  flex: 1;
+  width: 80%;
+  overflow: hidden;
+  padding: 35rpx 0;
+}
+.m-button{
+  font-size: 34rpx;
+  width: 100%;
+   height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  border-top: 1rpx solid #dedede;
+}
+.m-cancel, .m-confirm{
+  width: 50%;
+  text-align: center;
+}
+.m-cancel{
+  color: #ccc;
+  border-right: 1rpx solid #dedede;
+}
+.sign-btn {
+  border-radius: 150rpx;
+  height: 300rpx !important;
+  width: 300rpx !important;
+  line-height: 260rpx;
+}
+.btn-normal{
+  margin: 2%;
+  color: white;
+  background-color: #3d3d3d;
+}
+.btn-hover{
+  color: black;
+  background-color: gray;
+}

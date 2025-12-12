@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "openapi": [
+      "subscribeMessage.send"
+    ]
+  },
+  "triggers": [
+    {
+      "name": "waterTrigger",
+      "type": "timer",
+      "config": "0 0 11 * * * *"
+    }
+  ]
+}

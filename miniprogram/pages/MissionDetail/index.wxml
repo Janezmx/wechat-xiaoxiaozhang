@@ -1,0 +1,74 @@
+<wxs module="util" src="../util.wxs" />
+
+<view class="container white" style="animation-name: animation-blur; animation-duration: 0.8s;">
+  <!-- <image src="{{imageUrls[0]}}" mode='aspectFit' show-menu-by-longpress='1' bind:tap="previewImage"/> -->
+  <swiper wx:if="{{imageUrls.length > 0}}" indicator-dots="true" duration="500" 
+style="height: 200px; width: 100%; background: white; ">
+      <swiper-item wx:for="{{imageUrls}}" wx:key="index">
+      <image src="{{item}}" mode='aspectFit' data-url="{{item}}" class="swiper-image" show-menu-by-longpress='1' bind:tap="previewImage"/>
+      </swiper-item>
+</swiper>
+  <view class="form-group" 
+  style="z-index: 0; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05); ">
+    <view class="form-cell">
+      <view class="mission-info_title">🚩 标题</view>
+      <view class="mission-info_title">{{title}}</view>
+    </view>
+    <view class="form-cell">
+      <view class="mission-info_title">🎨 分类：{{preset}}</view>
+      <view class="mission-info_title">🌐 渠道：{{tag}}</view>
+      <view class="mission-info_title">🎁 价值类型：{{value}}</view>
+    </view>
+    <!-- <view class="form-cell">
+      <view class="mission-info_title">📅 创建日期</view>
+      <view class="mission-info_desc">{{dateStr}} | {{util.cutStr(timeStr, 8)}}</view>
+    </view> -->
+    <view class="form-cell">
+      <view class="mission-info_title">📝 任务详情</view>
+      <text class="mission-info_title" style="white-space: pre-line;" selectable="true" user-select="true">{{desc}}</text>
+    </view>
+    <view class="form-cell">
+      <view class="mission-info_title">📅 有效时间范围：
+      <view wx:if="{{dateBegin || dateEnd}}">{{dateBegin || '无'}} - {{dateEnd || '无'}}</view>
+      </view>
+      <view wx:if="{{!dateBegin && !dateEnd}}">无</view>
+    </view>
+    
+    
+    
+    <view style="padding: 20px;"><view style="color: crimson;display: inline-block;">提示：</view> 点击下方按钮可订阅新任务提醒，每点击一次攒一次提醒机会</view>
+    <view style="display: flex;margin-bottom: 20px;">
+      <button bindtap="toMissionPage" type="default" style="font-size: 30rpx;width:40%;">查看所有任务</button>
+      <button bindtap="requestMessage" type="default" style="font-size: 30rpx;width:60%;" disabled="{{addDisabled}}">已订阅{{addCount}}次新任务提醒</button>
+    </view>
+    <view wx:if="{{templateId}}">
+      <view style="padding: 20px;">点击以下按钮订阅{{temMessage}}，看完广告后每点击一次攒一次提醒机会</view>
+      <button bindtap="watchAd" type="default" style="font-size: 30rpx;width:100%;margin-bottom: 30px;" disabled="{{customDisabled}}">已订阅{{customCount}}次定制提醒(需看广告)</button>
+    </view>
+    
+  </view>
+  <!-- 自定义模态框 -- 引导跳授权设置页面 -->
+  <view class="jumpSetModel" wx:if="{{showSetModel}}">
+      <view class="jumpSetBox">
+        <view class="m-title">提示</view>
+        <view class="m-content">您已取消订阅通知消息，如果想重新订阅该消息可以点击去设置开启</view>
+        <view class="m-button">
+          <button class="m-cancel" catchtap="closeSetModel">不了</button>
+          <button class="m-confirm" open-type="openSetting" bindopensetting="openSetCallback">去设置</button>
+        </view>
+      </view>
+    </view>
+  <!-- 自定义模态框 -- 引导跳授权设置页面 -->
+ <view class="jumpSetModel" wx:if="{{showTemModel}}">
+      <view class="jumpSetBox">
+      <view class="m-title">观看成功</view>
+        <view class="m-content" style="text-align: center;">请点击下方按钮订阅提醒，每点击1次攒1次提醒机会</view>
+        <view class="m-button">
+        <button bindtap="closeModel">关闭</button>
+          <button bindtap="requestMessageCustom" type="default" style="font-size: 30rpx;width:100%;">已订阅{{customCount}}次</button>
+        </view>
+      </view>
+</view>
+</view>
+
+ 

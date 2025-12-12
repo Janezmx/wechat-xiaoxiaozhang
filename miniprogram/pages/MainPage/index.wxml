@@ -1,0 +1,44 @@
+<view style="width:100%; background: none;">
+
+
+
+
+<!-- <view class="form-group_label">🐻 欢迎回来</view> -->
+  <view class="form-group" style="margin-top: 50px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);">
+    <view class="form-cell">
+      <view class="slide">
+        <view class="title" style="font-size: 40rpx;">🤗 欢迎！</view>
+      </view>
+    </view>
+  </view>
+  <!-- <button type="primary" bindtap="requestSubscribeMessage">接收服务通知</button> -->
+  
+  <button bindtap="dailySign" :disabled="{{dailyDisabled}}" type="primary" class="sign-btn" style="margin-top: 50rpx;">已订阅{{count}}次</button>
+  <view class="form-group_label" style="padding: 10px;">如果需要每天提醒来看看有没有新任务或每日任务，记得订阅提醒，每点击一次可攒一次提醒</view>
+    <!-- 自定义模态框 -- 引导跳授权设置页面 -->
+    <view class="jumpSetModel" wx:if="{{showSetModel}}">
+      <view class="jumpSetBox">
+      <view class="m-title">提示</view>
+        <view class="m-content">您已取消订阅通知消息，如果想重新订阅该消息可以点击去设置开启</view>
+        <view class="m-button">
+          <button class="m-cancel" catchtap="closeSetModel">不了</button>
+          <button class="m-confirm" open-type="openSetting" bindopensetting="openSetCallback">去设置</button>
+        </view>
+      </view>
+    </view>
+    <mp-dialog title="留言" show="{{contactVisible}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+      <view class="form-cell">
+      <textarea class="form-cell_input" placeholder="有什么意见或建议" style="width: 100%;" bindinput="onDescInput" value="{{message}}" />
+    </view>
+
+</mp-dialog>
+</view>
+
+<movable-area style="pointer-events: none; position: fixed; width: 100%; height: 100%;" wx:if="{{isAuthor}}">
+  <movable-view style="pointer-events: auto; width: 20%; height: 20%;" x="{{screenWidth}}" y="{{screenHeight}}" direction="all">
+    <button class="btn-normal" hover-class="btn-hover" size="mini" bindtap="toAddPage"
+    style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <image style = "margin-top: 10px; height: 100%; width: 100%;" mode="widthFix" src="Images/Plus.png"/>任务
+    </button>
+  </movable-view>
+</movable-area>

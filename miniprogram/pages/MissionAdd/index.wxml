@@ -1,0 +1,54 @@
+<wxs module="util" src="../util.wxs" />
+<view class="container white" style="animation-name: animation-blur; animation-duration: 0.5s;">
+  <image src="../../images/Mission.gif" mode='widthFix' />
+  <view class="form-group" style="z-index: 0; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05); ">
+    <view class="form-cell">
+      <view class="form-cell_title">🔖选择分类</view>
+      <picker mode="selector" bindchange="onPresetChange" value="{{presetIndex}}" range="{{presets}}" range-key="name">{{presets[presetIndex].name}}</picker>
+    </view>
+    <view class="form-cell">
+      <view class="form-cell_title">🔖选择渠道</view>
+      <picker mode="selector" bindchange="onTagChange" value="{{tagIndex}}" range="{{tags}}" range-key="name">{{tags[tagIndex].name}}</picker>
+    </view>
+    <view class="form-cell">
+      <view class="form-cell_title">📌标题</view>
+      <input class="form-cell_input" placeholder="标题是什么?" placeholder-class="form-cell_placeholder" bindinput="onTitleInput" value="{{title}}" />
+    </view>
+    <view class="form-cell">
+            <text class="form-item-label">上传照片</text>
+            <view class="load-img1" bindtap="addImg" style="display: flex;width: 100%;">
+              <view wx:for="{{imageUrls}}" wx:key="index" style="width: 100px;height: 100px;">
+                <image src="{{item}}" mode='aspectFit' class="load-img"/>
+              </view>
+            </view>
+            <button type="primary" bindtap="uploadImage">确定上传</button>
+ </view>
+    <view class="form-cell">
+      <view class="form-cell_title">📝详情</view>
+      <textarea maxlength="-1" class="form-cell_input" placeholder="要做什么?" placeholder-class="form-cell_placeholder" bindinput="onDescInput" value="{{desc}}" />
+    </view>
+    <view class="form-cell">
+      <view class="form-cell_title">💰价值类型</view>
+      <picker mode="selector" bindchange="onValueChange" value="{{valueIndex}}" range="{{values}}" range-key="name">{{values[valueIndex].name}}</picker>
+    </view>
+    <view class="form-cell">
+    <view class="section__title">有效时间范围</view>
+      <picker mode="date" value="{{dateBegin}}" start="" end="" bindchange="bindDateBeginChange">
+        <view class="picker">
+          开始日期: {{dateBegin}}
+        </view>
+      </picker>
+      <picker mode="date" value="{{dateEnd}}" start="" end="" bindchange="bindDateEndChange">
+        <view class="picker">
+          结束日期: {{dateEnd}}
+        </view>
+      </picker>
+      <button type="primary" bindtap="clearDate">清空日期</button>
+  </view>
+  </view>
+
+  <view class="footer">
+    <view class="reset" bindtap="resetMission">重置</view>
+    <view class="save" bindtap="handleTap">保存</view>
+  </view>
+</view>
